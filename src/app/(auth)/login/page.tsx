@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import { ArrowRight, Lock, Mail } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Mail, Lock, ArrowRight } from "lucide-react";
+import React, { useState } from "react";
 import styles from "./Login.module.css";
 
 export default function LoginPage() {
@@ -29,7 +29,9 @@ export default function LoginPage() {
       if (email === "admin@sunumairie.sn" && password === "password") {
         router.push("/dashboard");
       } else {
-        setError("Identifiants incorrects. Veuillez utiliser admin@sunumairie.sn et 'password'.");
+        setError(
+          "Identifiants incorrects. Veuillez utiliser admin@sunumairie.sn et 'password'.",
+        );
         setLoading(false);
       }
     }, 1000);
@@ -51,11 +53,12 @@ export default function LoginPage() {
             className={styles.logo}
             priority
           />
-          <span className={styles.brandName}>Sunu Mairie</span>
-          
+
           <div className={styles.titleSection}>
             <h1 className={styles.title}>Portail Admin</h1>
-            <p className={styles.subtitle}>Connectez-vous pour gérer les démarches municipales</p>
+            <p className={styles.subtitle}>
+              Connectez-vous pour gérer les démarches municipales
+            </p>
           </div>
         </div>
 
@@ -100,10 +103,17 @@ export default function LoginPage() {
 
           <div className={styles.options}>
             <label className={styles.rememberMe}>
-              <input type="checkbox" className={styles.checkbox} defaultChecked />
+              <input
+                type="checkbox"
+                className={styles.checkbox}
+                defaultChecked
+              />
               <span>Se souvenir de moi</span>
             </label>
-            <a href="#" className={styles.forgotLink} onClick={(e) => e.preventDefault()}>
+            <a
+              href="#"
+              className={styles.forgotLink}
+              onClick={(e) => e.preventDefault()}>
               Mot de passe oublié ?
             </a>
           </div>
