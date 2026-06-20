@@ -45,11 +45,11 @@ const CITIZENS_DATA = [
     email: "mamadou.fall@outlook.com",
     phone: "+221 76 890 56 12",
     nin: "1682198800543",
-    region: "Saint-Louis",
+    region: "Grand Dakar",
     registeredDate: "18/02/2026",
     requestsCount: 2,
     spent: "26 000",
-    address: "Sor, Rue 5, Saint-Louis",
+    address: "Sor, Rue 5, Grand Dakar",
     status: "Actif",
     history: [
       {
@@ -93,7 +93,7 @@ const CITIZENS_DATA = [
     email: "mariama.sarr@gmail.com",
     phone: "+221 77 876 54 32",
     nin: "2802199500987",
-    region: "Kedougou",
+    region: "Grand Dakar",
     registeredDate: "10/01/2026",
     requestsCount: 2,
     spent: "1 000",
@@ -147,11 +147,11 @@ const CITIZENS_DATA = [
     email: "khadija.sy@live.fr",
     phone: "+221 70 765 43 21",
     nin: "2852199900854",
-    region: "Saint-Louis",
+    region: "Grand Dakar",
     registeredDate: "03/05/2026",
     requestsCount: 1,
     spent: "1 000",
-    address: "Ndar Tout, Saint-Louis",
+    address: "Ndar Tout, Grand Dakar",
     status: "Actif",
     history: [
       {
