@@ -16,23 +16,11 @@ import {
   CheckCircle,
   Clock,
   DollarSign,
-  FilterX,
   XCircle,
 } from "lucide-react";
-import { useState } from "react";
 import styles from "./Dashboard.module.css";
 
 export default function DashboardPage() {
-  // Filter States
-  const [region, setRegion] = useState("all");
-  const [status, setStatus] = useState("all");
-  const [type, setType] = useState("all");
-
-  const resetFilters = () => {
-    setRegion("all");
-    setStatus("all");
-    setType("all");
-  };
 
   // Mock Date for Header
   const currentDate = new Date().toLocaleDateString("fr-FR", {
@@ -57,60 +45,6 @@ export default function DashboardPage() {
           <span>{currentDate}</span>
         </div>
       </div>
-
-      {/* Filter Panel */}
-      <div className={`${styles.filterPanel} glassmorphism`}>
-        <div className={styles.filterGroup}>
-          <label className={styles.filterLabel}>Commune</label>
-          <select
-            value={region}
-            onChange={(e) => setRegion(e.target.value)}
-            className={styles.select}>
-            <option value="all">Toutes les Communes</option>
-            <option value="Keur Massar">Keur Massar</option>
-            <option value="kedougou">Dakar-Plateau</option>
-            <option value="Grand Yoff">Grand Yoff</option>
-            <option value="Grand Dakar">Grand Dakar</option>
-          </select>
-        </div>
-
-        <div className={styles.filterGroup}>
-          <label className={styles.filterLabel}>Statut</label>
-          <select
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-            className={styles.select}>
-            <option value="all">Tous les statuts</option>
-            <option value="attente">En attente</option>
-            <option value="approuve">Approuvé</option>
-            <option value="pret">Prêt</option>
-            <option value="rejete">Rejeté</option>
-          </select>
-        </div>
-
-        <div className={styles.filterGroup}>
-          <label className={styles.filterLabel}>Type de démarche</label>
-          <select
-            value={type}
-            onChange={(e) => setType(e.target.value)}
-            className={styles.select}>
-            <option value="all">Toutes les démarches</option>
-            <option value="naissance">Acte de naissance</option>
-            <option value="mariage">Certificat de mariage</option>
-            <option value="deces">Certificat de décès</option>
-            <option value="signalement">Signalement</option>
-            <option value="occupation">Occupation</option>
-          </select>
-        </div>
-
-        {(region !== "all" || status !== "all" || type !== "all") && (
-          <button onClick={resetFilters} className={styles.btnReset}>
-            <FilterX size={16} />
-            <span>Réinitialiser</span>
-          </button>
-        )}
-      </div>
-
       {/* KPI Cards Row */}
       <div className={styles.statsGrid}>
         <StatCard

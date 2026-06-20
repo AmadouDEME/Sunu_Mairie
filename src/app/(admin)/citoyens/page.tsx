@@ -104,7 +104,7 @@ const CITIZENS_DATA = [
         id: "DM-2026-004",
         type: "Signalement",
         status: "Rejeté",
-        date: Dakar-Plateau026",
+        date: "24/02/2026",
       },
       {
         id: "DM-2026-020",
