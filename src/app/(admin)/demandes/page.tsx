@@ -197,13 +197,9 @@ export default function DemandesPage() {
         typeFilter === "all" ||
         item.typeCode.toLowerCase() === typeFilter.toLowerCase();
 
-      const matchesRegion =
-        regionFilter === "all" ||
-        item.region.toLowerCase() === regionFilter.toLowerCase();
-
-      return matchesSearch && matchesStatus && matchesType && matchesRegion;
+      return matchesSearch && matchesStatus && matchesType;
     });
-  }, [demandes, search, statusFilter, typeFilter, regionFilter]);
+  }, [demandes, search, statusFilter, typeFilter]);
 
   // Pagination Logic
   const totalPages = Math.ceil(filteredDemandes.length / itemsPerPage) || 1;
