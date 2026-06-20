@@ -2,19 +2,19 @@
 
 import React, { useEffect, useState } from "react";
 import {
-  ResponsiveContainer,
-  PieChart,
-  Pie,
-  Cell,
-  BarChart,
   Bar,
+  BarChart,
+  CartesianGrid,
+  Cell,
+  Legend,
+  Line,
+  LineChart,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  LineChart,
-  Line,
 } from "recharts";
 import styles from "./Charts.module.css";
 
@@ -35,8 +35,7 @@ function SafeChart({ children }: { children: React.ReactNode }) {
           justifyContent: "center",
           color: "var(--text-muted)",
           fontSize: "0.85rem",
-        }}
-      >
+        }}>
         Chargement du graphique...
       </div>
     );
@@ -75,7 +74,9 @@ export function StatutDonutChart() {
       <div className={styles.chartHeader}>
         <div>
           <h3 className={styles.chartTitle}>Démarche par Statut</h3>
-          <p className={styles.chartSubtitle}>Répartition globale des demandes</p>
+          <p className={styles.chartSubtitle}>
+            Répartition globale des demandes
+          </p>
         </div>
       </div>
       <div className={styles.chartWrapper}>
@@ -89,8 +90,7 @@ export function StatutDonutChart() {
                 innerRadius={60}
                 outerRadius={80}
                 paddingAngle={4}
-                dataKey="value"
-              >
+                dataKey="value">
                 {data.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}
@@ -101,7 +101,10 @@ export function StatutDonutChart() {
                 layout="horizontal"
                 verticalAlign="bottom"
                 align="center"
-                wrapperStyle={{ fontSize: "0.8rem", color: "var(--text-secondary)" }}
+                wrapperStyle={{
+                  fontSize: "0.8rem",
+                  color: "var(--text-secondary)",
+                }}
               />
             </PieChart>
           </ResponsiveContainer>
@@ -114,18 +117,20 @@ export function StatutDonutChart() {
 // --- 2. REPARTITION PAR REGION ---
 export function RegionBarChart() {
   const data = [
-    { name: "Saint-Louis", value: 254 },
+    { name: "Grand Dakar", value: 254 },
     { name: "Kedougou", value: 252 },
-    { name: "Matam", value: 251 },
-    { name: "Dakar", value: 243 },
+    { name: "Grand Yoff", value: 251 },
+    { name: "Keur Massar", value: 243 },
   ];
 
   return (
     <div className={`${styles.chartCard} ${styles.col4} glassmorphism`}>
       <div className={styles.chartHeader}>
         <div>
-          <h3 className={styles.chartTitle}>Répartition par Région</h3>
-          <p className={styles.chartSubtitle}>Nombre de demandes par localité</p>
+          <h3 className={styles.chartTitle}>Répartition par Commune</h3>
+          <p className={styles.chartSubtitle}>
+            Nombre de demandes par localité
+          </p>
         </div>
       </div>
       <div className={styles.chartWrapper}>
@@ -134,24 +139,43 @@ export function RegionBarChart() {
             <BarChart
               data={data}
               layout="vertical"
-              margin={{ top: 10, right: 20, left: 10, bottom: 5 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" horizontal={true} vertical={false} />
+              margin={{ top: 10, right: 20, left: 10, bottom: 5 }}>
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="var(--border)"
+                horizontal={true}
+                vertical={false}
+              />
               <XAxis type="number" stroke="var(--text-muted)" fontSize={11} />
-              <YAxis dataKey="name" type="category" stroke="var(--text-muted)" fontSize={11} width={80} />
+              <YAxis
+                dataKey="name"
+                type="category"
+                stroke="var(--text-muted)"
+                fontSize={11}
+                width={80}
+              />
               <Tooltip content={<CustomTooltip />} />
-              <Bar dataKey="value" fill="var(--primary)" radius={[0, 4, 4, 0]} barSize={16}>
+              <Bar
+                dataKey="value"
+                fill="var(--primary)"
+                radius={[0, 4, 4, 0]}
+                barSize={16}>
                 {data.map((entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={`url(#regionGrad)`}
-                  />
+                  <Cell key={`cell-${index}`} fill={`url(#regionGrad)`} />
                 ))}
               </Bar>
               <defs>
                 <linearGradient id="regionGrad" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stopColor="var(--primary)" stopOpacity={0.7} />
-                  <stop offset="100%" stopColor="var(--primary)" stopOpacity={1} />
+                  <stop
+                    offset="0%"
+                    stopColor="var(--primary)"
+                    stopOpacity={0.7}
+                  />
+                  <stop
+                    offset="100%"
+                    stopColor="var(--primary)"
+                    stopOpacity={1}
+                  />
                 </linearGradient>
               </defs>
             </BarChart>
@@ -186,24 +210,43 @@ export function DemarcheTypeBarChart() {
             <BarChart
               data={data}
               layout="vertical"
-              margin={{ top: 10, right: 20, left: 10, bottom: 5 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" horizontal={true} vertical={false} />
+              margin={{ top: 10, right: 20, left: 10, bottom: 5 }}>
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="var(--border)"
+                horizontal={true}
+                vertical={false}
+              />
               <XAxis type="number" stroke="var(--text-muted)" fontSize={11} />
-              <YAxis dataKey="name" type="category" stroke="var(--text-muted)" fontSize={10} width={90} />
+              <YAxis
+                dataKey="name"
+                type="category"
+                stroke="var(--text-muted)"
+                fontSize={10}
+                width={90}
+              />
               <Tooltip content={<CustomTooltip />} />
-              <Bar dataKey="value" fill="var(--success)" radius={[0, 4, 4, 0]} barSize={14}>
+              <Bar
+                dataKey="value"
+                fill="var(--success)"
+                radius={[0, 4, 4, 0]}
+                barSize={14}>
                 {data.map((entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={`url(#typeGrad)`}
-                  />
+                  <Cell key={`cell-${index}`} fill={`url(#typeGrad)`} />
                 ))}
               </Bar>
               <defs>
                 <linearGradient id="typeGrad" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stopColor="var(--success)" stopOpacity={0.7} />
-                  <stop offset="100%" stopColor="var(--success)" stopOpacity={1} />
+                  <stop
+                    offset="0%"
+                    stopColor="var(--success)"
+                    stopOpacity={0.7}
+                  />
+                  <stop
+                    offset="100%"
+                    stopColor="var(--success)"
+                    stopOpacity={1}
+                  />
                 </linearGradient>
               </defs>
             </BarChart>
@@ -242,8 +285,7 @@ export function PaymentPieChart() {
                 cy="50%"
                 outerRadius={75}
                 paddingAngle={2}
-                dataKey="value"
-              >
+                dataKey="value">
                 {data.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}
@@ -254,7 +296,10 @@ export function PaymentPieChart() {
                 layout="horizontal"
                 verticalAlign="bottom"
                 align="center"
-                wrapperStyle={{ fontSize: "0.75rem", color: "var(--text-secondary)" }}
+                wrapperStyle={{
+                  fontSize: "0.75rem",
+                  color: "var(--text-secondary)",
+                }}
               />
             </PieChart>
           </ResponsiveContainer>
@@ -279,7 +324,9 @@ export function AgeBarChart() {
       <div className={styles.chartHeader}>
         <div>
           <h3 className={styles.chartTitle}>Demandes par Tranche d'Âge</h3>
-          <p className={styles.chartSubtitle}>Démographie des citoyens demandeurs</p>
+          <p className={styles.chartSubtitle}>
+            Démographie des citoyens demandeurs
+          </p>
         </div>
       </div>
       <div className={styles.chartWrapper}>
@@ -287,24 +334,32 @@ export function AgeBarChart() {
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={data}
-              margin={{ top: 10, right: 10, left: -20, bottom: 5 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={false} />
+              margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="var(--border)"
+                vertical={false}
+              />
               <XAxis dataKey="name" stroke="var(--text-muted)" fontSize={11} />
               <YAxis stroke="var(--text-muted)" fontSize={11} />
               <Tooltip content={<CustomTooltip />} />
-              <Bar dataKey="value" fill="var(--info)" radius={[4, 4, 0, 0]} barSize={24}>
+              <Bar
+                dataKey="value"
+                fill="var(--info)"
+                radius={[4, 4, 0, 0]}
+                barSize={24}>
                 {data.map((entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={`url(#ageGrad)`}
-                  />
+                  <Cell key={`cell-${index}`} fill={`url(#ageGrad)`} />
                 ))}
               </Bar>
               <defs>
                 <linearGradient id="ageGrad" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%" stopColor="var(--info)" stopOpacity={1} />
-                  <stop offset="100%" stopColor="var(--info)" stopOpacity={0.7} />
+                  <stop
+                    offset="100%"
+                    stopColor="var(--info)"
+                    stopOpacity={0.7}
+                  />
                 </linearGradient>
               </defs>
             </BarChart>
@@ -331,7 +386,9 @@ export function MonthlyLineChart() {
       <div className={styles.chartHeader}>
         <div>
           <h3 className={styles.chartTitle}>Démarches Mensuelles</h3>
-          <p className={styles.chartSubtitle}>Évolution des requêtes sur 6 mois</p>
+          <p className={styles.chartSubtitle}>
+            Évolution des requêtes sur 6 mois
+          </p>
         </div>
       </div>
       <div className={styles.chartWrapper}>
@@ -339,9 +396,12 @@ export function MonthlyLineChart() {
           <ResponsiveContainer width="100%" height="100%">
             <LineChart
               data={data}
-              margin={{ top: 10, right: 15, left: -20, bottom: 5 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={false} />
+              margin={{ top: 10, right: 15, left: -20, bottom: 5 }}>
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="var(--border)"
+                vertical={false}
+              />
               <XAxis dataKey="name" stroke="var(--text-muted)" fontSize={11} />
               <YAxis stroke="var(--text-muted)" fontSize={11} />
               <Tooltip content={<CustomTooltip />} />
@@ -351,7 +411,12 @@ export function MonthlyLineChart() {
                 stroke="var(--primary)"
                 strokeWidth={3}
                 activeDot={{ r: 6 }}
-                dot={{ r: 4, stroke: "var(--primary)", strokeWidth: 2, fill: "var(--sidebar-bg)" }}
+                dot={{
+                  r: 4,
+                  stroke: "var(--primary)",
+                  strokeWidth: 2,
+                  fill: "var(--sidebar-bg)",
+                }}
               />
             </LineChart>
           </ResponsiveContainer>

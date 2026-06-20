@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
-import { Search, Eye, ChevronLeft, ChevronRight } from "lucide-react";
 import DemandeDetailModal from "@/components/demandes/DemandeDetailModal";
+import { ChevronLeft, ChevronRight, Eye, Search } from "lucide-react";
+import { useMemo, useState } from "react";
 import styles from "./Demandes.module.css";
 
 // Initial mock data of administrative requests updated to match the new types and statuses
@@ -14,12 +14,17 @@ const INITIAL_DEMANDES = [
     type: "Acte de naissance",
     typeCode: "naissance",
     date: "19/06/2026",
-    region: "Dakar",
+    region: "Keur Massar",
     paid: true,
     paymentMethod: "Wave",
     amount: "1000",
     status: "En attente",
-    meta: { childName: "Moussa Diallo", birthDate: "15/06/2026", fatherName: "Ibrahima Diallo", motherName: "Aïssatou Diallo" },
+    meta: {
+      childName: "Moussa Diallo",
+      birthDate: "15/06/2026",
+      fatherName: "Ibrahima Diallo",
+      motherName: "Aïssatou Diallo",
+    },
   },
   {
     id: "DM-2026-002",
@@ -28,12 +33,17 @@ const INITIAL_DEMANDES = [
     type: "Occupation",
     typeCode: "occupation",
     date: "18/06/2026",
-    region: "Saint-Louis",
+    region: "Grand Dakar",
     paid: true,
     paymentMethod: "Orange Money",
     amount: "25000",
     status: "Approuvé",
-    meta: { address: "Sor, Rue 5, Saint-Louis", area: "450 m²", usage: "Habitation R+1", architect: "Cabinet S. Fall" },
+    meta: {
+      address: "Sor, Rue 5, Grand Dakar",
+      area: "450 m²",
+      usage: "Habitation R+1",
+      architect: "Cabinet S. Fall",
+    },
   },
   {
     id: "DM-2026-003",
@@ -42,12 +52,17 @@ const INITIAL_DEMANDES = [
     type: "Certificat de mariage",
     typeCode: "mariage",
     date: "17/06/2026",
-    region: "Matam",
+    region: "Grand Yoff",
     paid: true,
     paymentMethod: "Wave",
     amount: "3000",
     status: "Prêt",
-    meta: { husbandName: "Cheikh Ndiaye", wifeName: "Fatoumata Sow", marriageDate: "12/06/2026", regime: "Monogamie - Biens communs" },
+    meta: {
+      husbandName: "Cheikh Ndiaye",
+      wifeName: "Fatoumata Sow",
+      marriageDate: "12/06/2026",
+      regime: "Monogamie - Biens communs",
+    },
   },
   {
     id: "DM-2026-004",
@@ -61,7 +76,8 @@ const INITIAL_DEMANDES = [
     paymentMethod: "Espèces",
     amount: "500",
     status: "Rejeté",
-    rejectReason: "La pièce d'identité fournie est périmée depuis plus d'un an.",
+    rejectReason:
+      "La pièce d'identité fournie est périmée depuis plus d'un an.",
   },
   {
     id: "DM-2026-005",
@@ -70,12 +86,17 @@ const INITIAL_DEMANDES = [
     type: "Acte de naissance",
     typeCode: "naissance",
     date: "15/06/2026",
-    region: "Dakar",
+    region: "Keur Massar",
     paid: true,
     paymentMethod: "Orange Money",
     amount: "1000",
     status: "En attente",
-    meta: { childName: "Seynabou Cissé", birthDate: "10/06/2026", fatherName: "Ousmane Cissé", motherName: "Rokhaya Diop" },
+    meta: {
+      childName: "Seynabou Cissé",
+      birthDate: "10/06/2026",
+      fatherName: "Ousmane Cissé",
+      motherName: "Rokhaya Diop",
+    },
   },
   {
     id: "DM-2026-006",
@@ -84,7 +105,7 @@ const INITIAL_DEMANDES = [
     type: "Certificat de décès",
     typeCode: "deces",
     date: "14/06/2026",
-    region: "Saint-Louis",
+    region: "Grand Dakar",
     paid: true,
     paymentMethod: "Free Money",
     amount: "1000",
@@ -97,7 +118,7 @@ const INITIAL_DEMANDES = [
     type: "Signalement",
     typeCode: "signalement",
     date: "12/06/2026",
-    region: "Matam",
+    region: "Grand Yoff",
     paid: false,
     paymentMethod: "Non payé",
     amount: "15000",
@@ -110,7 +131,7 @@ const INITIAL_DEMANDES = [
     type: "Signalement",
     typeCode: "signalement",
     date: "11/06/2026",
-    region: "Dakar",
+    region: "Keur Massar",
     paid: true,
     paymentMethod: "Wave",
     amount: "500",
@@ -136,25 +157,26 @@ const INITIAL_DEMANDES = [
     type: "Acte de naissance",
     typeCode: "naissance",
     date: "09/06/2026",
-    region: "Dakar",
+    region: "Keur Massar",
     paid: true,
     paymentMethod: "Wave",
     amount: "1000",
     status: "Rejeté",
-    rejectReason: "L'acte de mariage des parents est obligatoire pour cette demande.",
+    rejectReason:
+      "L'acte de mariage des parents est obligatoire pour cette demande.",
   },
 ];
 
 export default function DemandesPage() {
   const [demandes, setDemandes] = useState<any[]>(INITIAL_DEMANDES);
-  
+
   // Filters & Pagination State
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [typeFilter, setTypeFilter] = useState("all");
   const [regionFilter, setRegionFilter] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
-  
+
   // Detail Modal State
   const [selectedDemande, setSelectedDemande] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -167,15 +189,18 @@ export default function DemandesPage() {
       const matchesSearch =
         item.citoyen.toLowerCase().includes(search.toLowerCase()) ||
         item.id.toLowerCase().includes(search.toLowerCase());
-      
+
       const matchesStatus =
-        statusFilter === "all" || item.status.toLowerCase() === statusFilter.toLowerCase();
-        
+        statusFilter === "all" ||
+        item.status.toLowerCase() === statusFilter.toLowerCase();
+
       const matchesType =
-        typeFilter === "all" || item.typeCode.toLowerCase() === typeFilter.toLowerCase();
-        
+        typeFilter === "all" ||
+        item.typeCode.toLowerCase() === typeFilter.toLowerCase();
+
       const matchesRegion =
-        regionFilter === "all" || item.region.toLowerCase() === regionFilter.toLowerCase();
+        regionFilter === "all" ||
+        item.region.toLowerCase() === regionFilter.toLowerCase();
 
       return matchesSearch && matchesStatus && matchesType && matchesRegion;
     });
@@ -193,7 +218,11 @@ export default function DemandesPage() {
     setIsModalOpen(true);
   };
 
-  const handleUpdateStatus = (id: string, newStatus: string, rejectReason?: string) => {
+  const handleUpdateStatus = (
+    id: string,
+    newStatus: string,
+    rejectReason?: string,
+  ) => {
     setDemandes((prevList) =>
       prevList.map((item) => {
         if (item.id === id) {
@@ -204,7 +233,7 @@ export default function DemandesPage() {
           };
         }
         return item;
-      })
+      }),
     );
 
     // If modal is open and shows this item, update selectedDemande state
@@ -223,7 +252,8 @@ export default function DemandesPage() {
       <div className={styles.titleSection}>
         <h1 className={styles.title}>Gestion des Demandes</h1>
         <p className={styles.subtitle}>
-          Visualisez, prenez en charge et signez numériquement les dossiers administratifs.
+          Visualisez, prenez en charge et signez numériquement les dossiers
+          administratifs.
         </p>
       </div>
 
@@ -250,8 +280,7 @@ export default function DemandesPage() {
               setStatusFilter(e.target.value);
               setCurrentPage(1);
             }}
-            className={styles.select}
-          >
+            className={styles.select}>
             <option value="all">Tous les statuts</option>
             <option value="en attente">En attente</option>
             <option value="approuvé">Approuvé</option>
@@ -265,8 +294,7 @@ export default function DemandesPage() {
               setTypeFilter(e.target.value);
               setCurrentPage(1);
             }}
-            className={styles.select}
-          >
+            className={styles.select}>
             <option value="all">Tous les documents</option>
             <option value="naissance">Acte de naissance</option>
             <option value="mariage">Certificat de mariage</option>
@@ -281,13 +309,12 @@ export default function DemandesPage() {
               setRegionFilter(e.target.value);
               setCurrentPage(1);
             }}
-            className={styles.select}
-          >
-            <option value="all">Toutes les régions</option>
-            <option value="dakar">Dakar</option>
-            <option value="saint-louis">Saint-Louis</option>
-            <option value="matam">Matam</option>
-            <option value="kedougou">Kédougou</option>
+            className={styles.select}>
+            <option value="all">Toutes les Communes</option>
+            <option value="Keur Massar">Keur Massar</option>
+            <option value="Grand Dakar">Grand Dakar</option>
+            <option value="Grand Yoff">Grand Yoff</option>
+            <option value="kedougou">Dakar-Plateau</option>
           </select>
         </div>
       </div>
@@ -301,17 +328,21 @@ export default function DemandesPage() {
               <th className={styles.th}>Citoyen</th>
               <th className={styles.th}>Type de Démarche</th>
               <th className={styles.th}>Date de Soumission</th>
-              <th className={styles.th}>Région</th>
+              <th className={styles.th}>Commune</th>
               <th className={styles.th}>Paiement</th>
               <th className={styles.th}>Statut</th>
-              <th className={styles.th} style={{ textAlign: "right" }}>Actions</th>
+              <th className={styles.th} style={{ textAlign: "right" }}>
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody>
             {paginatedDemandes.length > 0 ? (
               paginatedDemandes.map((item) => (
                 <tr key={item.id} className={styles.tr}>
-                  <td className={styles.td} style={{ fontWeight: 600 }}>{item.id}</td>
+                  <td className={styles.td} style={{ fontWeight: 600 }}>
+                    {item.id}
+                  </td>
                   <td className={styles.td}>{item.citoyen}</td>
                   <td className={styles.td}>{item.type}</td>
                   <td className={styles.td}>{item.date}</td>
@@ -324,7 +355,9 @@ export default function DemandesPage() {
                         }`}
                       />
                       <span className={styles.paymentMethod}>
-                        {item.paid ? `Payé (${item.paymentMethod})` : "Non payé"}
+                        {item.paid
+                          ? `Payé (${item.paymentMethod})`
+                          : "Non payé"}
                       </span>
                     </div>
                   </td>
@@ -334,20 +367,18 @@ export default function DemandesPage() {
                         item.status === "En attente"
                           ? styles.badgeAttente
                           : item.status === "Approuvé"
-                          ? styles.badgeCours
-                          : item.status === "Prêt"
-                          ? styles.badgeSigne
-                          : styles.badgeRejete
-                      }`}
-                    >
+                            ? styles.badgeCours
+                            : item.status === "Prêt"
+                              ? styles.badgeSigne
+                              : styles.badgeRejete
+                      }`}>
                       {item.status}
                     </span>
                   </td>
                   <td className={styles.td} style={{ textAlign: "right" }}>
                     <button
                       onClick={() => handleOpenDetail(item)}
-                      className={styles.btnView}
-                    >
+                      className={styles.btnView}>
                       <Eye size={14} />
                       <span>Traiter</span>
                     </button>
@@ -356,7 +387,14 @@ export default function DemandesPage() {
               ))
             ) : (
               <tr>
-                <td colSpan={8} className={styles.td} style={{ textAlign: "center", padding: "40px 0", color: "var(--text-muted)" }}>
+                <td
+                  colSpan={8}
+                  className={styles.td}
+                  style={{
+                    textAlign: "center",
+                    padding: "40px 0",
+                    color: "var(--text-muted)",
+                  }}>
                   Aucune demande ne correspond à vos filtres.
                 </td>
               </tr>
@@ -369,15 +407,14 @@ export default function DemandesPage() {
           <div className={styles.pagination}>
             <span>
               Affichage de {(currentPage - 1) * itemsPerPage + 1} à{" "}
-              {Math.min(currentPage * itemsPerPage, filteredDemandes.length)} sur{" "}
-              {filteredDemandes.length} demandes
+              {Math.min(currentPage * itemsPerPage, filteredDemandes.length)}{" "}
+              sur {filteredDemandes.length} demandes
             </span>
             <div className={styles.pageButtons}>
               <button
                 disabled={currentPage === 1}
                 onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-                className={styles.pageBtn}
-              >
+                className={styles.pageBtn}>
                 <ChevronLeft size={16} />
               </button>
               {Array.from({ length: totalPages }).map((_, i) => (
@@ -386,16 +423,16 @@ export default function DemandesPage() {
                   onClick={() => setCurrentPage(i + 1)}
                   className={`${styles.pageBtn} ${
                     currentPage === i + 1 ? styles.pageBtnActive : ""
-                  }`}
-                >
+                  }`}>
                   {i + 1}
                 </button>
               ))}
               <button
                 disabled={currentPage === totalPages}
-                onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
-                className={styles.pageBtn}
-              >
+                onClick={() =>
+                  setCurrentPage((p) => Math.min(p + 1, totalPages))
+                }
+                className={styles.pageBtn}>
                 <ChevronRight size={16} />
               </button>
             </div>

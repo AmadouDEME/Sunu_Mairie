@@ -1,7 +1,13 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { QrCode, FileSignature, CheckCircle, FileCheck, HelpCircle } from "lucide-react";
+import {
+  CheckCircle,
+  FileCheck,
+  FileSignature,
+  HelpCircle,
+  QrCode,
+} from "lucide-react";
+import { useEffect, useState } from "react";
 import styles from "./Signatures.module.css";
 
 // Mock documents ready for signature (Approved status)
@@ -12,10 +18,10 @@ const INITIAL_QUEUE = [
     type: "Occupation",
     typeCode: "occupation",
     date: "18/06/2026",
-    region: "Saint-Louis",
+    region: "Grand Dakar",
     amount: "25 000",
     meta: {
-      address: "Sor, Rue 5, Saint-Louis",
+      address: "Sor, Rue 5, Grand Dakar",
       area: "450 m²",
       usage: "Habitation R+1",
       architect: "Cabinet S. Fall",
@@ -27,7 +33,7 @@ const INITIAL_QUEUE = [
     type: "Signalement",
     typeCode: "signalement",
     date: "11/06/2026",
-    region: "Dakar",
+    region: "Keur Massar",
     amount: "0",
     meta: {
       docName: "Dépôt sauvage d'ordures",
@@ -41,7 +47,7 @@ const INITIAL_QUEUE = [
     type: "Certificat de mariage",
     typeCode: "mariage",
     date: "19/06/2026",
-    region: "Dakar",
+    region: "Keur Massar",
     amount: "3 000",
     meta: {
       husbandName: "Cheikh Tidiane Diop",
@@ -56,7 +62,7 @@ const INITIAL_QUEUE = [
     type: "Acte de naissance",
     typeCode: "naissance",
     date: "19/06/2026",
-    region: "Matam",
+    region: "Grand Yoff",
     amount: "1 000",
     meta: {
       childName: "Abdoulaye Sow",
@@ -71,7 +77,7 @@ export default function SignaturesPage() {
   const [queue, setQueue] = useState(INITIAL_QUEUE);
   const [activeId, setActiveId] = useState(INITIAL_QUEUE[0]?.id || "");
   const [signedIds, setSignedIds] = useState<string[]>([]);
-  
+
   // Signing Animation States
   const [isSigning, setIsSigning] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -94,7 +100,7 @@ export default function SignaturesPage() {
       interval = setInterval(() => {
         setProgress((prev) => {
           const next = prev + 5;
-          
+
           // Update texts depending on progression
           if (next < 25) {
             setStepText("Génération de la paire de clés cryptographiques...");
@@ -140,7 +146,8 @@ export default function SignaturesPage() {
       <div className={styles.titleSection}>
         <h1 className={styles.title}>Validation & Signatures</h1>
         <p className={styles.subtitle}>
-          Signez numériquement les dossiers approuvés. L'apposition du sceau rend le document "Prêt".
+          Signez numériquement les dossiers approuvés. L'apposition du sceau
+          rend le document "Prêt".
         </p>
       </div>
 
@@ -166,21 +173,30 @@ export default function SignaturesPage() {
                     }`}
                     onClick={() => {
                       if (!isSigning) setActiveId(doc.id);
-                    }}
-                  >
+                    }}>
                     <div className={styles.docHeader}>
                       <span className={styles.docId}>{doc.id}</span>
                       {isSigned ? (
-                        <span style={{ color: "var(--success)", display: "flex", alignItems: "center", gap: 4 }}>
+                        <span
+                          style={{
+                            color: "var(--success)",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: 4,
+                          }}>
                           <CheckCircle size={14} />
-                          <span style={{ fontSize: "0.7rem", fontWeight: 700 }}>Prêt</span>
+                          <span style={{ fontSize: "0.7rem", fontWeight: 700 }}>
+                            Prêt
+                          </span>
                         </span>
                       ) : (
                         <span className={styles.docDate}>{doc.date}</span>
                       )}
                     </div>
                     <div className={styles.docType}>{doc.type}</div>
-                    <div className={styles.docCitizen}>Citoyen : {doc.citoyen}</div>
+                    <div className={styles.docCitizen}>
+                      Citoyen : {doc.citoyen}
+                    </div>
                   </div>
                 );
               })
@@ -199,9 +215,15 @@ export default function SignaturesPage() {
             <div className={styles.signingOverlay}>
               <span className={styles.signingTitle}>{stepText}</span>
               <div className={styles.progressBarBg}>
-                <div className={styles.progressBarFill} style={{ width: `${progress}%` }} />
+                <div
+                  className={styles.progressBarFill}
+                  style={{ width: `${progress}%` }}
+                />
               </div>
-              <span style={{ fontSize: "0.85rem", color: "var(--text-secondary)" }}>{progress}%</span>
+              <span
+                style={{ fontSize: "0.85rem", color: "var(--text-secondary)" }}>
+                {progress}%
+              </span>
             </div>
           )}
 
@@ -210,11 +232,15 @@ export default function SignaturesPage() {
               <div className={styles.headerRow}>
                 <h2 className={styles.cardTitle}>Aperçu du Document</h2>
                 {isCurrentSigned ? (
-                  <button onClick={handleNextDocument} className={styles.btnPrimary}>
+                  <button
+                    onClick={handleNextDocument}
+                    className={styles.btnPrimary}>
                     Document Suivant
                   </button>
                 ) : (
-                  <button onClick={handleSignDocument} className={styles.btnSuccess}>
+                  <button
+                    onClick={handleSignDocument}
+                    className={styles.btnSuccess}>
                     <FileSignature size={18} />
                     Apposer le Sceau & Valider
                   </button>
@@ -225,32 +251,44 @@ export default function SignaturesPage() {
                 {/* A4 Sheet template */}
                 <div className={styles.certificate}>
                   <div className={styles.certHeader}>
-                    <span className={styles.republicText}>République du Sénégal</span>
-                    <span className={styles.mottoText}>Un Peuple - Un But - Une Foi</span>
-                    <span style={{ marginTop: 4 }}>VILLE DE DAKAR - COMMUNE MUNICIPALE</span>
+                    <span className={styles.republicText}>
+                      République du Sénégal
+                    </span>
+                    <span className={styles.mottoText}>
+                      Un Peuple - Un But - Une Foi
+                    </span>
+                    <span style={{ marginTop: 4 }}>
+                      VILLE DE Keur Massar - COMMUNE MUNICIPALE
+                    </span>
                   </div>
 
-                  <h3 className={styles.certTitle}>
-                    {activeDoc.type}
-                  </h3>
+                  <h3 className={styles.certTitle}>{activeDoc.type}</h3>
 
                   <div className={styles.certBody}>
                     <div className={styles.certRow}>
-                      <span className={styles.certLabel}>Référence dossier :</span>
-                      <span className={styles.certVal} style={{ fontFamily: "monospace", fontWeight: 700 }}>
+                      <span className={styles.certLabel}>
+                        Référence dossier :
+                      </span>
+                      <span
+                        className={styles.certVal}
+                        style={{ fontFamily: "monospace", fontWeight: 700 }}>
                         {activeDoc.id}
                       </span>
                     </div>
                     <div className={styles.certRow}>
                       <span className={styles.certLabel}>Nom du Citoyen :</span>
-                      <span className={styles.certVal}>{activeDoc.citoyen}</span>
+                      <span className={styles.certVal}>
+                        {activeDoc.citoyen}
+                      </span>
                     </div>
                     <div className={styles.certRow}>
                       <span className={styles.certLabel}>Date de dépôt :</span>
                       <span className={styles.certVal}>{activeDoc.date}</span>
                     </div>
                     <div className={styles.certRow}>
-                      <span className={styles.certLabel}>Commune / Région :</span>
+                      <span className={styles.certLabel}>
+                        Commune / Commune :
+                      </span>
                       <span className={styles.certVal}>{activeDoc.region}</span>
                     </div>
 
@@ -258,17 +296,28 @@ export default function SignaturesPage() {
                     {activeDoc.typeCode === "naissance" && (
                       <>
                         <div className={styles.certRow}>
-                          <span className={styles.certLabel}>Nom de l'enfant :</span>
-                          <span className={styles.certVal}>{activeDoc.meta.childName}</span>
-                        </div>
-                        <div className={styles.certRow}>
-                          <span className={styles.certLabel}>Date de Naissance :</span>
-                          <span className={styles.certVal}>{activeDoc.meta.birthDate}</span>
-                        </div>
-                        <div className={styles.certRow}>
-                          <span className={styles.certLabel}>Père & Mère :</span>
+                          <span className={styles.certLabel}>
+                            Nom de l'enfant :
+                          </span>
                           <span className={styles.certVal}>
-                            Fils de {activeDoc.meta.fatherName} et de {activeDoc.meta.motherName}
+                            {activeDoc.meta.childName}
+                          </span>
+                        </div>
+                        <div className={styles.certRow}>
+                          <span className={styles.certLabel}>
+                            Date de Naissance :
+                          </span>
+                          <span className={styles.certVal}>
+                            {activeDoc.meta.birthDate}
+                          </span>
+                        </div>
+                        <div className={styles.certRow}>
+                          <span className={styles.certLabel}>
+                            Père & Mère :
+                          </span>
+                          <span className={styles.certVal}>
+                            Fils de {activeDoc.meta.fatherName} et de{" "}
+                            {activeDoc.meta.motherName}
                           </span>
                         </div>
                       </>
@@ -279,16 +328,23 @@ export default function SignaturesPage() {
                         <div className={styles.certRow}>
                           <span className={styles.certLabel}>Conjoints :</span>
                           <span className={styles.certVal}>
-                            {activeDoc.meta.husbandName} & {activeDoc.meta.wifeName}
+                            {activeDoc.meta.husbandName} &{" "}
+                            {activeDoc.meta.wifeName}
                           </span>
                         </div>
                         <div className={styles.certRow}>
                           <span className={styles.certLabel}>Célébré le :</span>
-                          <span className={styles.certVal}>{activeDoc.meta.marriageDate}</span>
+                          <span className={styles.certVal}>
+                            {activeDoc.meta.marriageDate}
+                          </span>
                         </div>
                         <div className={styles.certRow}>
-                          <span className={styles.certLabel}>Régime Matrimonial :</span>
-                          <span className={styles.certVal}>{activeDoc.meta.regime}</span>
+                          <span className={styles.certLabel}>
+                            Régime Matrimonial :
+                          </span>
+                          <span className={styles.certVal}>
+                            {activeDoc.meta.regime}
+                          </span>
                         </div>
                       </>
                     )}
@@ -296,17 +352,26 @@ export default function SignaturesPage() {
                     {activeDoc.typeCode === "occupation" && (
                       <>
                         <div className={styles.certRow}>
-                          <span className={styles.certLabel}>Adresse terrain :</span>
-                          <span className={styles.certVal}>{activeDoc.meta.address}</span>
+                          <span className={styles.certLabel}>
+                            Adresse terrain :
+                          </span>
+                          <span className={styles.certVal}>
+                            {activeDoc.meta.address}
+                          </span>
                         </div>
                         <div className={styles.certRow}>
                           <span className={styles.certLabel}>Superficie :</span>
-                          <span className={styles.certVal}>{activeDoc.meta.area}</span>
+                          <span className={styles.certVal}>
+                            {activeDoc.meta.area}
+                          </span>
                         </div>
                         <div className={styles.certRow}>
-                          <span className={styles.certLabel}>Usage & Architecte :</span>
+                          <span className={styles.certLabel}>
+                            Usage & Architecte :
+                          </span>
                           <span className={styles.certVal}>
-                            {activeDoc.meta.usage} par {activeDoc.meta.architect}
+                            {activeDoc.meta.usage} par{" "}
+                            {activeDoc.meta.architect}
                           </span>
                         </div>
                       </>
@@ -315,16 +380,26 @@ export default function SignaturesPage() {
                     {activeDoc.typeCode === "signalement" && (
                       <>
                         <div className={styles.certRow}>
-                          <span className={styles.certLabel}>Description anomalie:</span>
-                          <span className={styles.certVal}>{activeDoc.meta.docName}</span>
+                          <span className={styles.certLabel}>
+                            Description anomalie:
+                          </span>
+                          <span className={styles.certVal}>
+                            {activeDoc.meta.docName}
+                          </span>
                         </div>
                         <div className={styles.certRow}>
-                          <span className={styles.certLabel}>Signalé par :</span>
-                          <span className={styles.certVal}>{activeDoc.meta.witness}</span>
+                          <span className={styles.certLabel}>
+                            Signalé par :
+                          </span>
+                          <span className={styles.certVal}>
+                            {activeDoc.meta.witness}
+                          </span>
                         </div>
                         <div className={styles.certRow}>
                           <span className={styles.certLabel}>Urgence :</span>
-                          <span className={styles.certVal}>{activeDoc.meta.validity}</span>
+                          <span className={styles.certVal}>
+                            {activeDoc.meta.validity}
+                          </span>
                         </div>
                       </>
                     )}
@@ -336,9 +411,15 @@ export default function SignaturesPage() {
                       <div className={styles.seal}>
                         <QrCode size={40} />
                         <div className={styles.sealText}>
-                          <span className={styles.sealTitle}>Document Prêt</span>
-                          <span style={{ fontSize: "0.55rem" }}>Sceau Officiel de Dakar</span>
-                          <span className={styles.sealCode}>SEC-QR-{activeDoc.id}</span>
+                          <span className={styles.sealTitle}>
+                            Document Prêt
+                          </span>
+                          <span style={{ fontSize: "0.55rem" }}>
+                            Sceau Officiel de Keur Massar
+                          </span>
+                          <span className={styles.sealCode}>
+                            SEC-QR-{activeDoc.id}
+                          </span>
                         </div>
                       </div>
                     )}
@@ -348,10 +429,21 @@ export default function SignaturesPage() {
             </>
           ) : (
             <div className={styles.emptyState}>
-              <HelpCircle size={48} style={{ color: "var(--text-muted)", marginBottom: 12 }} />
-              <h3 style={{ color: "var(--text-primary)" }}>Sélectionnez un document</h3>
-              <p style={{ fontSize: "0.875rem", textAlign: "center", maxWidth: 300 }}>
-                Choisissez un dossier dans la file d'attente à gauche pour charger son aperçu officiel et y apposer le sceau municipal.
+              <HelpCircle
+                size={48}
+                style={{ color: "var(--text-muted)", marginBottom: 12 }}
+              />
+              <h3 style={{ color: "var(--text-primary)" }}>
+                Sélectionnez un document
+              </h3>
+              <p
+                style={{
+                  fontSize: "0.875rem",
+                  textAlign: "center",
+                  maxWidth: 300,
+                }}>
+                Choisissez un dossier dans la file d'attente à gauche pour
+                charger son aperçu officiel et y apposer le sceau municipal.
               </p>
             </div>
           )}

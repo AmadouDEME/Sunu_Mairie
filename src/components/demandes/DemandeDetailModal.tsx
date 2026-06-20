@@ -1,14 +1,18 @@
 "use client";
 
+import { Check, Download, FileText, X } from "lucide-react";
 import React, { useState } from "react";
-import { X, FileText, Download, Check } from "lucide-react";
 import styles from "./DemandeDetailModal.module.css";
 
 interface DemandeDetailModalProps {
   isOpen: boolean;
   onClose: () => void;
   demande: any;
-  onUpdateStatus: (id: string, newStatus: string, rejectReason?: string) => void;
+  onUpdateStatus: (
+    id: string,
+    newStatus: string,
+    rejectReason?: string,
+  ) => void;
 }
 
 export default function DemandeDetailModal({
@@ -48,19 +52,27 @@ export default function DemandeDetailModal({
           <div className={styles.infoGrid}>
             <div className={styles.infoBlock}>
               <span className={styles.label}>Nom complet de l'enfant</span>
-              <span className={styles.value}>{demande.meta?.childName || "Mamadou Fall"}</span>
+              <span className={styles.value}>
+                {demande.meta?.childName || "Mamadou Fall"}
+              </span>
             </div>
             <div className={styles.infoBlock}>
               <span className={styles.label}>Date de naissance</span>
-              <span className={styles.value}>{demande.meta?.birthDate || "12/04/2026"}</span>
+              <span className={styles.value}>
+                {demande.meta?.birthDate || "12/04/2026"}
+              </span>
             </div>
             <div className={styles.infoBlock}>
               <span className={styles.label}>Nom du Père</span>
-              <span className={styles.value}>{demande.meta?.fatherName || "Abdou Fall"}</span>
+              <span className={styles.value}>
+                {demande.meta?.fatherName || "Abdou Fall"}
+              </span>
             </div>
             <div className={styles.infoBlock}>
               <span className={styles.label}>Nom de la Mère</span>
-              <span className={styles.value}>{demande.meta?.motherName || "Mariama Diallo"}</span>
+              <span className={styles.value}>
+                {demande.meta?.motherName || "Mariama Diallo"}
+              </span>
             </div>
           </div>
         );
@@ -69,19 +81,27 @@ export default function DemandeDetailModal({
           <div className={styles.infoGrid}>
             <div className={styles.infoBlock}>
               <span className={styles.label}>Nom de l'Époux</span>
-              <span className={styles.value}>{demande.meta?.husbandName || "Cheikh Ndiaye"}</span>
+              <span className={styles.value}>
+                {demande.meta?.husbandName || "Cheikh Ndiaye"}
+              </span>
             </div>
             <div className={styles.infoBlock}>
               <span className={styles.label}>Nom de l'Épouse</span>
-              <span className={styles.value}>{demande.meta?.wifeName || "Fatoumata Sow"}</span>
+              <span className={styles.value}>
+                {demande.meta?.wifeName || "Fatoumata Sow"}
+              </span>
             </div>
             <div className={styles.infoBlock}>
               <span className={styles.label}>Date du Mariage</span>
-              <span className={styles.value}>{demande.meta?.marriageDate || "12/06/2026"}</span>
+              <span className={styles.value}>
+                {demande.meta?.marriageDate || "12/06/2026"}
+              </span>
             </div>
             <div className={styles.infoBlock}>
               <span className={styles.label}>Régime matrimonial</span>
-              <span className={styles.value}>{demande.meta?.regime || "Monogamie - Biens communs"}</span>
+              <span className={styles.value}>
+                {demande.meta?.regime || "Monogamie - Biens communs"}
+              </span>
             </div>
           </div>
         );
@@ -98,7 +118,9 @@ export default function DemandeDetailModal({
             </div>
             <div className={styles.infoBlock}>
               <span className={styles.label}>Lieu du Décès</span>
-              <span className={styles.value}>Hôpital Principal de Dakar</span>
+              <span className={styles.value}>
+                Hôpital Principal de Keur Massar
+              </span>
             </div>
             <div className={styles.infoBlock}>
               <span className={styles.label}>Déclarant</span>
@@ -111,15 +133,22 @@ export default function DemandeDetailModal({
           <div className={styles.infoGrid}>
             <div className={styles.infoBlock}>
               <span className={styles.label}>Adresse de l'occupation</span>
-              <span className={styles.value}>{demande.meta?.address || "Mermoz, Lot 234, Dakar"}</span>
+              <span className={styles.value}>
+                {demande.meta?.address || "Mermoz, Lot 234, Keur Massar"}
+              </span>
             </div>
             <div className={styles.infoBlock}>
               <span className={styles.label}>Superficie demandée (m²)</span>
-              <span className={styles.value}>{demande.meta?.area || "450 m²"}</span>
+              <span className={styles.value}>
+                {demande.meta?.area || "450 m²"}
+              </span>
             </div>
             <div className={styles.infoBlock}>
               <span className={styles.label}>Usage prévu</span>
-              <span className={styles.value}>{demande.meta?.usage || "Terrasse de Café / Commerce temporaire"}</span>
+              <span className={styles.value}>
+                {demande.meta?.usage ||
+                  "Terrasse de Café / Commerce temporaire"}
+              </span>
             </div>
             <div className={styles.infoBlock}>
               <span className={styles.label}>Durée sollicitée</span>
@@ -132,19 +161,30 @@ export default function DemandeDetailModal({
           <div className={styles.infoGrid}>
             <div className={styles.infoBlock}>
               <span className={styles.label}>Type d'anomalie</span>
-              <span className={styles.value}>{demande.meta?.docName || "Éclairage public défectueux / Nid de poule"}</span>
+              <span className={styles.value}>
+                {demande.meta?.docName ||
+                  "Éclairage public défectueux / Nid de poule"}
+              </span>
             </div>
             <div className={styles.infoBlock}>
               <span className={styles.label}>Localisation</span>
-              <span className={styles.value}>Avenue Bourguiba, angle Rue 12</span>
+              <span className={styles.value}>
+                Avenue Bourguiba, angle Rue 12
+              </span>
             </div>
             <div className={styles.infoBlock}>
               <span className={styles.label}>Témoin / Déclarant</span>
-              <span className={styles.value}>{demande.meta?.witness || "Mariama Sarr"}</span>
+              <span className={styles.value}>
+                {demande.meta?.witness || "Mariama Sarr"}
+              </span>
             </div>
             <div className={styles.infoBlock}>
               <span className={styles.label}>Niveau d'urgence</span>
-              <span className={styles.value} style={{ color: "var(--warning-text)", fontWeight: 700 }}>Moyen</span>
+              <span
+                className={styles.value}
+                style={{ color: "var(--warning-text)", fontWeight: 700 }}>
+                Moyen
+              </span>
             </div>
           </div>
         );
@@ -153,7 +193,9 @@ export default function DemandeDetailModal({
           <div className={styles.infoGrid}>
             <div className={styles.infoBlock}>
               <span className={styles.label}>Description de la démarche</span>
-              <span className={styles.value}>Dossier de demande générale d'autorisation municipale.</span>
+              <span className={styles.value}>
+                Dossier de demande générale d'autorisation municipale.
+              </span>
             </div>
           </div>
         );
@@ -169,7 +211,10 @@ export default function DemandeDetailModal({
             <h2 className={styles.modalTitle}>Demande {demande.id}</h2>
             <p className={styles.modalSubtitle}>Soumis le {demande.date}</p>
           </div>
-          <button onClick={onClose} className={styles.closeBtn} aria-label="Fermer">
+          <button
+            onClick={onClose}
+            className={styles.closeBtn}
+            aria-label="Fermer">
             <X size={20} />
           </button>
         </div>
@@ -188,16 +233,19 @@ export default function DemandeDetailModal({
                 </div>
                 <div className={styles.infoBlock}>
                   <span className={styles.label}>Numéro de Téléphone</span>
-                  <span className={styles.value}>{demande.phone || "+221 77 123 45 67"}</span>
+                  <span className={styles.value}>
+                    {demande.phone || "+221 77 123 45 67"}
+                  </span>
                 </div>
                 <div className={styles.infoBlock}>
-                  <span className={styles.label}>Région</span>
+                  <span className={styles.label}>Commune</span>
                   <span className={styles.value}>{demande.region}</span>
                 </div>
                 <div className={styles.infoBlock}>
                   <span className={styles.label}>Paiement</span>
                   <span className={styles.value}>
-                    {demande.paid ? "Payé" : "Non payé"} ({demande.paymentMethod})
+                    {demande.paid ? "Payé" : "Non payé"} (
+                    {demande.paymentMethod})
                   </span>
                 </div>
               </div>
@@ -213,14 +261,20 @@ export default function DemandeDetailModal({
                 </div>
                 <div className={styles.infoBlock}>
                   <span className={styles.label}>Coût démarche</span>
-                  <span className={styles.value}>{demande.amount || "1 000"} FCFA</span>
+                  <span className={styles.value}>
+                    {demande.amount || "1 000"} FCFA
+                  </span>
                 </div>
               </div>
 
               {demande.status === "Rejeté" && demande.rejectReason && (
                 <div className={styles.rejectionForm} style={{ margin: 0 }}>
                   <span className={styles.rejectionTitle}>Motif du rejet</span>
-                  <p style={{ fontSize: "0.85rem", color: "var(--danger-text)" }}>
+                  <p
+                    style={{
+                      fontSize: "0.85rem",
+                      color: "var(--danger-text)",
+                    }}>
                     {demande.rejectReason}
                   </p>
                 </div>
@@ -288,8 +342,12 @@ export default function DemandeDetailModal({
 
           {/* Reject Form */}
           {showRejectForm && (
-            <form onSubmit={handleRejectSubmit} className={styles.rejectionForm}>
-              <div className={styles.rejectionTitle}>Expliquer le motif du rejet</div>
+            <form
+              onSubmit={handleRejectSubmit}
+              className={styles.rejectionForm}>
+              <div className={styles.rejectionTitle}>
+                Expliquer le motif du rejet
+              </div>
               <textarea
                 value={rejectReason}
                 onChange={(e) => setRejectReason(e.target.value)}
@@ -302,11 +360,13 @@ export default function DemandeDetailModal({
                   type="button"
                   onClick={() => setShowRejectForm(false)}
                   className={styles.btnCancel}
-                  style={{ padding: "6px 12px", fontSize: "0.8rem" }}
-                >
+                  style={{ padding: "6px 12px", fontSize: "0.8rem" }}>
                   Annuler
                 </button>
-                <button type="submit" className={styles.btnDanger} style={{ padding: "6px 12px", fontSize: "0.8rem" }}>
+                <button
+                  type="submit"
+                  className={styles.btnDanger}
+                  style={{ padding: "6px 12px", fontSize: "0.8rem" }}>
                   Confirmer le rejet
                 </button>
               </div>
@@ -324,7 +384,9 @@ export default function DemandeDetailModal({
             <>
               {demande.status === "En attente" && (
                 <>
-                  <button onClick={() => setShowRejectForm(true)} className={styles.btnDanger}>
+                  <button
+                    onClick={() => setShowRejectForm(true)}
+                    className={styles.btnDanger}>
                     Rejeter
                   </button>
                   <button onClick={handleProcess} className={styles.btnPrimary}>
@@ -335,7 +397,9 @@ export default function DemandeDetailModal({
 
               {demande.status === "Approuvé" && (
                 <>
-                  <button onClick={() => setShowRejectForm(true)} className={styles.btnDanger}>
+                  <button
+                    onClick={() => setShowRejectForm(true)}
+                    className={styles.btnDanger}>
                     Rejeter
                   </button>
                   <button onClick={handleSign} className={styles.btnSuccess}>

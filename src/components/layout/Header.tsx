@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
-import { Menu, Search, Bell, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/context/ThemeContext";
+import { Bell, Menu, Moon, Search, Sun } from "lucide-react";
 import styles from "./Header.module.css";
 
 interface HeaderProps {
@@ -19,8 +18,7 @@ export default function Header({ onMenuClick }: HeaderProps) {
           <button
             onClick={onMenuClick}
             className={styles.menuButton}
-            aria-label="Ouvrir le menu"
-          >
+            aria-label="Ouvrir le menu">
             <Menu size={24} />
           </button>
 
@@ -40,8 +38,7 @@ export default function Header({ onMenuClick }: HeaderProps) {
             onClick={toggleTheme}
             className={styles.iconBtn}
             aria-label="Changer de thème"
-            title="Changer de thème"
-          >
+            title="Changer de thème">
             {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
           </button>
 
@@ -49,8 +46,7 @@ export default function Header({ onMenuClick }: HeaderProps) {
           <button
             className={styles.iconBtn}
             aria-label="Notifications"
-            title="Notifications"
-          >
+            title="Notifications">
             <Bell size={20} />
             <span className={styles.badge} />
           </button>
@@ -59,7 +55,7 @@ export default function Header({ onMenuClick }: HeaderProps) {
           <div className={styles.profile}>
             <div className={styles.avatar}>AD</div>
             <div className={styles.profileInfo}>
-              <span className={styles.adminName}>Admin Dakar</span>
+              <span className={styles.adminName}>Admin Keur Massar</span>
               <span className={styles.adminRole}>Super Administrateur</span>
             </div>
           </div>

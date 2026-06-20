@@ -1,25 +1,25 @@
 "use client";
 
-import React, { useState } from "react";
 import {
-  Calendar,
-  DollarSign,
-  Clock,
-  CheckCircle,
-  XCircle,
-  AlertCircle,
-  FilterX,
-} from "lucide-react";
-import StatCard from "@/components/dashboard/StatCard";
-import {
-  StatutDonutChart,
-  RegionBarChart,
-  DemarcheTypeBarChart,
-  PaymentPieChart,
   AgeBarChart,
+  DemarcheTypeBarChart,
   MonthlyLineChart,
+  PaymentPieChart,
+  RegionBarChart,
+  StatutDonutChart,
 } from "@/components/dashboard/Charts";
 import chartStyles from "@/components/dashboard/Charts.module.css";
+import StatCard from "@/components/dashboard/StatCard";
+import {
+  AlertCircle,
+  Calendar,
+  CheckCircle,
+  Clock,
+  DollarSign,
+  FilterX,
+  XCircle,
+} from "lucide-react";
+import { useState } from "react";
 import styles from "./Dashboard.module.css";
 
 export default function DashboardPage() {
@@ -48,7 +48,9 @@ export default function DashboardPage() {
       <div className={styles.header}>
         <div className={styles.titleSection}>
           <h1 className={styles.title}>Vue d'ensemble</h1>
-          <p className={styles.subtitle}>Statistiques en temps réel et performances de la mairie</p>
+          <p className={styles.subtitle}>
+            Statistiques en temps réel et performances de la mairie
+          </p>
         </div>
         <div className={styles.dateDisplay}>
           <Calendar size={16} />
@@ -59,17 +61,16 @@ export default function DashboardPage() {
       {/* Filter Panel */}
       <div className={`${styles.filterPanel} glassmorphism`}>
         <div className={styles.filterGroup}>
-          <label className={styles.filterLabel}>Région</label>
+          <label className={styles.filterLabel}>Commune</label>
           <select
             value={region}
             onChange={(e) => setRegion(e.target.value)}
-            className={styles.select}
-          >
-            <option value="all">Toutes les régions</option>
-            <option value="dakar">Dakar</option>
-            <option value="kedougou">Kédougou</option>
-            <option value="matam">Matam</option>
-            <option value="saint-louis">Saint-Louis</option>
+            className={styles.select}>
+            <option value="all">Toutes les Communes</option>
+            <option value="Keur Massar">Keur Massar</option>
+            <option value="kedougou">Dakar-Plateau</option>
+            <option value="Grand Yoff">Grand Yoff</option>
+            <option value="Grand Dakar">Grand Dakar</option>
           </select>
         </div>
 
@@ -78,8 +79,7 @@ export default function DashboardPage() {
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value)}
-            className={styles.select}
-          >
+            className={styles.select}>
             <option value="all">Tous les statuts</option>
             <option value="attente">En attente</option>
             <option value="approuve">Approuvé</option>
@@ -93,8 +93,7 @@ export default function DashboardPage() {
           <select
             value={type}
             onChange={(e) => setType(e.target.value)}
-            className={styles.select}
-          >
+            className={styles.select}>
             <option value="all">Toutes les démarches</option>
             <option value="naissance">Acte de naissance</option>
             <option value="mariage">Certificat de mariage</option>
