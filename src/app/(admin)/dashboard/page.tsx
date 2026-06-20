@@ -5,7 +5,6 @@ import {
   DemarcheTypeBarChart,
   MonthlyLineChart,
   PaymentPieChart,
-  RegionBarChart,
   StatutDonutChart,
 } from "@/components/dashboard/Charts";
 import chartStyles from "@/components/dashboard/Charts.module.css";
@@ -93,7 +92,6 @@ export default function DashboardPage() {
       <div className={chartStyles.chartGrid}>
         {/* Row 1: Donut, Region bar, Type bar */}
         <StatutDonutChart />
-        <RegionBarChart />
         <DemarcheTypeBarChart />
 
         {/* Row 2: Payment pie, Age bar, Monthly line */}
