@@ -1,0 +1,330 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.titleSection {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* Workspace Layout */
+.workspace {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.queueCard {
+  grid-column: span 4;
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  min-height: 550px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.previewCard {
+  grid-column: span 8;
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  min-height: 550px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 14px;
+}
+
+.cardTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.badgeCount {
+  background-color: var(--primary-light);
+  color: var(--primary);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.docList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  max-height: 480px;
+}
+
+.docItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  background-color: rgba(var(--background-raw), 0.2);
+}
+
+.docItem:hover {
+  background-color: var(--sidebar-hover);
+  border-color: var(--text-muted);
+}
+
+.docItemActive {
+  background-color: var(--primary-light);
+  border-color: var(--primary);
+}
+
+.docHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.docId {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.docDate {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.docType {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.docCitizen {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Certificate Preview Sheet */
+.previewArea {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: var(--radius-md);
+  overflow-y: auto;
+  max-height: 520px;
+}
+
+.certificate {
+  width: 100%;
+  max-width: 480px;
+  background-color: #ffffff;
+  color: #1e293b;
+  padding: 32px;
+  border-radius: 4px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  font-family: 'Times New Roman', Times, serif;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  border: 1px solid #cbd5e1;
+}
+
+.certHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.4;
+  border-bottom: 2px double #475569;
+  padding-bottom: 8px;
+}
+
+.republicText {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.mottoText {
+  font-style: italic;
+  font-weight: 500;
+}
+
+.certTitle {
+  font-size: 1.25rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.05em;
+  color: #0f172a;
+}
+
+.certBody {
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  line-height: 1.6;
+}
+
+.certRow {
+  display: flex;
+  border-bottom: 1px dotted #94a3b8;
+  padding-bottom: 2px;
+}
+
+.certLabel {
+  font-weight: 700;
+  width: 130px;
+  flex-shrink: 0;
+}
+
+.certVal {
+  flex: 1;
+}
+
+/* Digital Seal Stamp */
+.sealContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  min-height: 80px;
+}
+
+.seal {
+  border: 2px solid #059669;
+  color: #059669;
+  padding: 8px 12px;
+  font-family: var(--font-sans);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transform: rotate(-3deg);
+  background-color: rgba(5, 150, 105, 0.05);
+  animation: stampIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.sealText {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.sealTitle {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+}
+
+.sealCode {
+  font-family: monospace;
+  color: #10b981;
+}
+
+/* Animations */
+@keyframes stampIn {
+  from {
+    opacity: 0;
+    transform: scale(2) rotate(-20deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(-3deg);
+  }
+}
+
+/* Signing Loader Overlay */
+.signingOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(var(--background-raw), 0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 10;
+  border-radius: var(--radius-lg);
+}
+
+.signingTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.progressBarBg {
+  width: 240px;
+  height: 6px;
+  background-color: var(--border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progressBarFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--success));
+  border-radius: var(--radius-full);
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 380px;
+  color: var(--text-muted);
+  gap: 12px;
+}
+
+@media (max-width: 1024px) {
+  .queueCard, .previewCard {
+    grid-column: span 12;
+  }
+  .queueCard {
+    min-height: auto;
+  }
+}
