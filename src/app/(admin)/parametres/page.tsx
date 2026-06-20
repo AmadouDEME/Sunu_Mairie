@@ -7,7 +7,7 @@ import styles from "./Parametres.module.css";
 const INITIAL_ADMINS = [
   {
     id: "ADM-001",
-    name: "Admin Keur Massar",
+    name: "Admin Grand Dakar",
     email: "admin@sunumairie.sn",
     role: "Super Administrateur",
     roleClass: styles.roleSuper,
@@ -106,7 +106,8 @@ export default function ParametresPage() {
             <div className={styles.formGroup}>
               <label className={styles.label}>Acte de naissance</label>
               <div className={styles.inputWrapper}>
-                <input title="Coût en FCFA"
+                <input
+                  title="Coût en FCFA"
                   type="number"
                   value={prices.naissance}
                   onChange={(e) =>

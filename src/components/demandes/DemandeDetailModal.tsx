@@ -119,7 +119,7 @@ export default function DemandeDetailModal({
             <div className={styles.infoBlock}>
               <span className={styles.label}>Lieu du Décès</span>
               <span className={styles.value}>
-                Hôpital Principal de Keur Massar
+                Hôpital Principal de Grand Dakar
               </span>
             </div>
             <div className={styles.infoBlock}>
@@ -134,7 +134,7 @@ export default function DemandeDetailModal({
             <div className={styles.infoBlock}>
               <span className={styles.label}>Adresse de l'occupation</span>
               <span className={styles.value}>
-                {demande.meta?.address || "Mermoz, Lot 234, Keur Massar"}
+                {demande.meta?.address || "Mermoz, Lot 234, Grand Dakar"}
               </span>
             </div>
             <div className={styles.infoBlock}>

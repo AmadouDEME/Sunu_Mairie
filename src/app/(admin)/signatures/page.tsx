@@ -33,7 +33,7 @@ const INITIAL_QUEUE = [
     type: "Signalement",
     typeCode: "signalement",
     date: "11/06/2026",
-    region: "Keur Massar",
+    region: "Grand Dakar",
     amount: "0",
     meta: {
       docName: "Dépôt sauvage d'ordures",
@@ -47,7 +47,7 @@ const INITIAL_QUEUE = [
     type: "Certificat de mariage",
     typeCode: "mariage",
     date: "19/06/2026",
-    region: "Keur Massar",
+    region: "Grand Dakar",
     amount: "3 000",
     meta: {
       husbandName: "Cheikh Tidiane Diop",
@@ -62,7 +62,7 @@ const INITIAL_QUEUE = [
     type: "Acte de naissance",
     typeCode: "naissance",
     date: "19/06/2026",
-    region: "Grand Yoff",
+    region: "Grand Dakar",
     amount: "1 000",
     meta: {
       childName: "Abdoulaye Sow",
@@ -258,7 +258,7 @@ export default function SignaturesPage() {
                       Un Peuple - Un But - Une Foi
                     </span>
                     <span style={{ marginTop: 4 }}>
-                      VILLE DE Keur Massar - COMMUNE MUNICIPALE
+                      VILLE DE Grand Dakar - COMMUNE MUNICIPALE
                     </span>
                   </div>
 
@@ -415,7 +415,7 @@ export default function SignaturesPage() {
                             Document Prêt
                           </span>
                           <span style={{ fontSize: "0.55rem" }}>
-                            Sceau Officiel de Keur Massar
+                            Sceau Officiel de Grand Dakar
                           </span>
                           <span className={styles.sealCode}>
                             SEC-QR-{activeDoc.id}

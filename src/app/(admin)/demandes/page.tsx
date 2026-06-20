@@ -14,7 +14,7 @@ const INITIAL_DEMANDES = [
     type: "Acte de naissance",
     typeCode: "naissance",
     date: "19/06/2026",
-    region: "Keur Massar",
+    region: "Grand Dakar",
     paid: true,
     paymentMethod: "Wave",
     amount: "1000",
@@ -52,7 +52,7 @@ const INITIAL_DEMANDES = [
     type: "Certificat de mariage",
     typeCode: "mariage",
     date: "17/06/2026",
-    region: "Grand Yoff",
+    region: "Grand Dakar",
     paid: true,
     paymentMethod: "Wave",
     amount: "3000",
@@ -86,7 +86,7 @@ const INITIAL_DEMANDES = [
     type: "Acte de naissance",
     typeCode: "naissance",
     date: "15/06/2026",
-    region: "Keur Massar",
+    region: "Grand Dakar",
     paid: true,
     paymentMethod: "Orange Money",
     amount: "1000",
@@ -118,7 +118,7 @@ const INITIAL_DEMANDES = [
     type: "Signalement",
     typeCode: "signalement",
     date: "12/06/2026",
-    region: "Grand Yoff",
+    region: "Grand Dakar",
     paid: false,
     paymentMethod: "Non payé",
     amount: "15000",
@@ -131,7 +131,7 @@ const INITIAL_DEMANDES = [
     type: "Signalement",
     typeCode: "signalement",
     date: "11/06/2026",
-    region: "Keur Massar",
+    region: "Grand Dakar",
     paid: true,
     paymentMethod: "Wave",
     amount: "500",
@@ -157,7 +157,7 @@ const INITIAL_DEMANDES = [
     type: "Acte de naissance",
     typeCode: "naissance",
     date: "09/06/2026",
-    region: "Keur Massar",
+    region: "Grand Dakar",
     paid: true,
     paymentMethod: "Wave",
     amount: "1000",
@@ -174,7 +174,6 @@ export default function DemandesPage() {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [typeFilter, setTypeFilter] = useState("all");
-  const [regionFilter, setRegionFilter] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
 
   // Detail Modal State
@@ -301,20 +300,6 @@ export default function DemandesPage() {
             <option value="deces">Certificat de décès</option>
             <option value="signalement">Signalement</option>
             <option value="occupation">Occupation</option>
-          </select>
-
-          <select
-            value={regionFilter}
-            onChange={(e) => {
-              setRegionFilter(e.target.value);
-              setCurrentPage(1);
-            }}
-            className={styles.select}>
-            <option value="all">Toutes les Communes</option>
-            <option value="Keur Massar">Keur Massar</option>
-            <option value="Grand Dakar">Grand Dakar</option>
-            <option value="Grand Yoff">Grand Yoff</option>
-            <option value="kedougou">Dakar-Plateau</option>
           </select>
         </div>
       </div>

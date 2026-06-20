@@ -55,7 +55,7 @@ export default function Header({ onMenuClick }: HeaderProps) {
           <div className={styles.profile}>
             <div className={styles.avatar}>AD</div>
             <div className={styles.profileInfo}>
-              <span className={styles.adminName}>Admin Keur Massar</span>
+              <span className={styles.adminName}>Admin Grand Dakar</span>
               <span className={styles.adminRole}>Super Administrateur</span>
             </div>
           </div>

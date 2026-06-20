@@ -119,8 +119,8 @@ export function RegionBarChart() {
   const data = [
     { name: "Grand Dakar", value: 254 },
     { name: "Kedougou", value: 252 },
-    { name: "Grand Yoff", value: 251 },
-    { name: "Keur Massar", value: 243 },
+    { name: "Grand Dakar", value: 251 },
+    { name: "Grand Dakar", value: 243 },
   ];
 
   return (
