@@ -106,7 +106,7 @@ export default function ParametresPage() {
             <div className={styles.formGroup}>
               <label className={styles.label}>Acte de naissance</label>
               <div className={styles.inputWrapper}>
-                <input
+                <input title="Coût en FCFA"
                   type="number"
                   value={prices.naissance}
                   onChange={(e) =>
