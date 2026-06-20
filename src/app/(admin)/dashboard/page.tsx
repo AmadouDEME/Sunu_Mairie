@@ -48,7 +48,7 @@ export default function DashboardPage() {
       <div className={styles.statsGrid}>
         <StatCard
           label="Montant FCFA"
-          value="15 240 000 ₣"
+          value="15 240 000 FCFA"
           icon={DollarSign}
           trend="+14.2%"
           trendType="up"
